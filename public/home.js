@@ -1,19 +1,13 @@
-//main component function
 function Home(){
-  return (<>
-      <Card
-        txtcolor="black"
-        header="BadBank Landing Module"
-        title="Welcome to the bank"
-        text="You can move around using the navigation bar."
-        body={(<img src="BankPicture.jpg" className="img-fluid" alt="Responsive image"/>)}
-      />
-      <form action="#/login/">
-        <input className="btn btn-light" type="submit" value="Login" />
-      </form>
-      <form action="#/CreateAccount/">
-        <input className="btn btn-light" type="submit" value="Create Account" />
-      </form>
-    </>
+  
+  return (
+    <Card
+      bgcolor="info"  
+      txtcolor="black"
+      header="BadBank Landing Page"
+      title="Welcome to the Best BadBank Website"
+      text="You can use this banking app to perform various tasks such as create an account, deposit and withdraw!"
+      body={(<img src="bank.png" className="img-fluid" alt="Responsive image"/>)}
+    />
   );  
 }

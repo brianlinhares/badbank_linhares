@@ -1,0 +1,10 @@
+.navbar .navbar-nav .nav-link:hover{
+    background-color: lightyellow;
+    color: black;
+}
+
+/* a:is(:link, :active, :visited).active{
+    background-color: lightblue;
+    color: black;
+} */
+
