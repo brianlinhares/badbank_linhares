@@ -4,9 +4,8 @@ function AllData(){
     const [show, setShow] = React.useState(false);
     const [user, setUser] = React.useState(null);
 
-    React.useEffect(() => {
-        
-        // fetch all accounts from API
+    React.useEffect(() => {       
+//================================DATA FROM API================================
         fetch('/account/all')
             .then(response => response.json())
             .then(data => {
@@ -15,13 +14,10 @@ function AllData(){
                 function isUser (item) {
                     return item.email === ctx[0].user.email;
                 }
-                setUser(data.find(isUser));
-                
+                setUser(data.find(isUser));               
             });
-
     }, []);
-
-    //displays user information if normal user
+//================================USER: DISPLAY USER INFORMATION================================
     const Cards = () => {
         if (!ctx[2].logIn) {
             return <h1>Please log In</h1>
@@ -43,11 +39,10 @@ function AllData(){
             return card;
         }
     }
-
-    //displays all user information cards if admin
+//================================ADMIN: DISPLAY USER INFORMATION================================
     const Card = () => {
         if(!ctx[2].logIn) {
-            return <h1>Please Log In</h1>
+            return <h1>Please Login</h1>
         } else {
             return(
                 <div className='card'>
@@ -63,7 +58,6 @@ function AllData(){
             );
         }
     }
-
     return (<>
         <h5>All Data in Store:</h5>
         {/* {JSON.stringify(data)} */}

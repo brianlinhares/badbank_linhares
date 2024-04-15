@@ -6,9 +6,8 @@ function Home(){
         header="BadBank Landing Module"
         title="Welcome to the bank"
         text="You can move around using the navigation bar."
-        body={(<img src="bank.png" className="img-fluid" alt="Responsive image"/>)}
+        body={(<img src="BankPicture.jpg" className="img-fluid" alt="Responsive image"/>)}
       />
-      {/* added create account buttons */}
       <form action="#/login/">
         <input className="btn btn-light" type="submit" value="Login" />
       </form>

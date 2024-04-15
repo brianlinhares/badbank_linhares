@@ -1,4 +1,3 @@
-//component function for page
 function Deposit(){
   const [show, setShow]     = React.useState(true);
   const [status, setStatus] = React.useState('');
@@ -7,7 +6,7 @@ function Deposit(){
   return (
     <Card
       bgcolor="warning"
-      header={ctx[2].logIn ? `Deposit ${ctx[0].user.email}` : 'Please Log In to make a deposit'}
+      header={ctx[2].logIn ? `Deposit ${ctx[0].user.email}` : 'Please Login'}
       status={status}
       body={show ? 
         <DepositForm setShow={setShow} setStatus={setStatus}/> :
@@ -15,8 +14,7 @@ function Deposit(){
     />
   )
 }
-
-//success message 
+//================================SUCCESS MESSAGE================================ 
 function DepositMsg(props){
   return (<>
     <h5>Success</h5>
@@ -30,14 +28,12 @@ function DepositMsg(props){
     </button>
   </>);
 } 
-
-//function for form
+//================================FORM================================
 function DepositForm(props){
   const ctx = React.useContext(UserContext);
   const [email, setEmail]   = React.useState(ctx[0].user.email);
   const [amount, setAmount] = React.useState('');
-
-  //function to handle form submit
+//================================SUBMIT================================
   function handle(){
     fetch(`/account/update/${email}/${amount}`)
     .then(response => response.text())
@@ -50,23 +46,20 @@ function DepositForm(props){
             ctx[5].balanceUser(data.value.balance);
             console.log(data);
         } catch(err) {
-            props.setStatus('Deposit failed');
+            props.setStatus('Deposit Transaction Failed');
             console.log('err:', text);
         }
     });
   }
-
   return(<>
 
     Balance<br/>
-    {ctx[2].logIn ? `$ ${ctx[0].user.balance}` : '$0'}<br/><br/>
-      
+    {ctx[2].logIn ? `$ ${ctx[0].user.balance}` : '$0.00'}<br/><br/>      
     Amount<br/>
     <input type="number" 
       className="form-control" 
       placeholder="Enter amount" 
       value={amount} onChange={e => setAmount(e.currentTarget.value)}/><br/>
-
     <button type="submit" 
       className="btn btn-light" 
       onClick={handle}>Deposit</button>
