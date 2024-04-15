@@ -1,15 +1,11 @@
 const mongodb = require("mongodb");
 require('dotenv').config()
-
-//connects to database
+//================================CONNECTS TO DB================================
 const connectionURL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PWD}@cluster0.ebre3yq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
 const dbName = "myproject"
-
-//get MongoClient
+//================================GET MONGODB================================
 const MongoClient = mongodb.MongoClient;
-
 let db = null;
-
 MongoClient.connect(connectionURL,{
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -17,24 +13,19 @@ MongoClient.connect(connectionURL,{
     if(err){
         throw err;
     }
-    //connectedClient will be the connected instance of MongoClient
     db = connectedClient.db(dbName);
-
-
 })
-
-// create user account
+//================================CREATE ACCOUNT================================
 function create(name, email, password,role){
     return new Promise((resolve, reject) => {    
         const collection = db.collection('users');
-        const doc = {name, email, password, balance: 0, role, transactions: []};//added role and transactions to database
+        const doc = {name, email, password, balance: 0, role, transactions: []};
         collection.insertOne(doc, {w:1}, function(err, result) {
             err ? reject(err) : resolve(doc);
         });    
     })
 }
-
-// find user account
+//================================FIND ACCOUNT================================
 function find(email){
     return new Promise((resolve, reject) => {    
         const customers = db
@@ -45,8 +36,7 @@ function find(email){
         });    
     })
 }
-
-// find user account
+//================================FINDONE ACCOUNT================================
 function findOne(email){
     return new Promise((resolve, reject) => {    
         const customers = db
@@ -56,8 +46,7 @@ function findOne(email){
             .catch((err) => reject(err));    
     })
 }
-
-// update - deposit/withdraw amount
+//================================DEPOSIT/WITHDRAW================================
 function update(email, amount){
     return new Promise((resolve, reject) => {    
         const customers = db
@@ -70,13 +59,10 @@ function update(email, amount){
                 function (err, documents) {
                     err ? reject(err) : resolve(documents);
                 }
-            );            
-
-
+            );      
     });    
 }
-
-// all users
+//================================ALL ACCOUNTS================================
 function all(){
     return new Promise((resolve, reject) => {    
         const customers = db
@@ -87,6 +73,4 @@ function all(){
         });    
     })
 }
-
-
 module.exports = {create, findOne, find, update, all};
