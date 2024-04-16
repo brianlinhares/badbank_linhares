@@ -2,13 +2,19 @@ function Balance(){
   const ctx = React.useContext(UserContext);
 
   return (
-    <Card
-      bgcolor="info"
-      header={ctx[2].logIn ? `Balance for ${ctx[0].user.email}` : 'Please Log In to view your balance'}
-      body={
-      <BalanceForm />
+    <body>
+    <img src="deposit.jpg" className="background"/>
+    <div>
+      <Card
+        bgcolor="info"
+        header={ctx[2].logIn ? `Balance for ${ctx[0].user.email}` : 'Please Log In to view your balance'}
+        body={
+        <BalanceForm />
     }
     />
+    </div>
+    </body>
+
   );
 }
 //================================FORM================================

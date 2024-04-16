@@ -1,8 +1,11 @@
 function Login(){
   const [show, setShow]     = React.useState(true);
   const [status, setStatus] = React.useState('');
-
-  return (
+//================================BACKGROUND AND CARD================================
+  return (<>
+      <body>
+        <img src="greenCity.jpeg" className="background"/>
+      <div>
     <Card
       bgcolor="secondary"
       header="Login"
@@ -11,9 +14,11 @@ function Login(){
         <LoginForm setShow={setShow} setStatus={setStatus}/> :
         <LoginMsg setShow={setShow} setStatus={setStatus}/>}
     />
-  );
+    </div>
+    </body>
+  </>);
 }
-
+//================================LOGIN MESSAGE================================
 function LoginMsg(props){
   return(<>
     <h5>Success</h5>
@@ -24,12 +29,12 @@ function LoginMsg(props){
     </button>
   </>);
 }
-
+//================================FORM================================
 function LoginForm(props){
   const ctx = React.useContext(UserContext);
   const [email, setEmail]       = React.useState('');
   const [password, setPassword] = React.useState('');
-
+//================================HANDLE FORM================================
   function handle(){
     const encodePassword = encodeURIComponent(password);
     fetch(`/account/login/${email}/${encodePassword}`)
@@ -54,17 +59,13 @@ function LoginForm(props){
         }
     });
   }
-
-
   return (<>
-
     Email<br/>
     <input type="input" 
       className="form-control" 
       placeholder="Enter email" 
       value={email} 
       onChange={e => setEmail(e.currentTarget.value)}/><br/>
-
     Password<br/>
     <input type="password" 
       className="form-control" 

@@ -3,16 +3,25 @@ function Deposit(){
   const [status, setStatus] = React.useState('');
   const ctx = React.useContext(UserContext);
 
-  return (
-    <Card
-      bgcolor="warning"
-      header={ctx[2].logIn ? `Deposit ${ctx[0].user.email}` : 'Please Login'}
-      status={status}
-      body={show ? 
-        <DepositForm setShow={setShow} setStatus={setStatus}/> :
-        <DepositMsg setShow={setShow} setStatus={setStatus}/>}
-    />
-  )
+  return (<>
+    <body>
+        <img src="deposit.jpg" className="background"/>
+    <div>
+      <Card
+          bgcolor="warning"
+          header={ctx[2].logIn ? `Deposit ${ctx[0].user.email}` : 'Please Login'}
+          status={status}
+          body={show ? 
+            <DepositForm setShow={setShow} setStatus={setStatus}/> :
+            <DepositMsg setShow={setShow} setStatus={setStatus}/>}
+        />
+    </div>
+    </body>
+        
+
+
+    
+  </>)
 }
 //================================SUCCESS MESSAGE================================ 
 function DepositMsg(props){
@@ -63,6 +72,5 @@ function DepositForm(props){
     <button type="submit" 
       className="btn btn-light" 
       onClick={handle}>Deposit</button>
-
   </>);
 }

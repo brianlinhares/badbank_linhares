@@ -3,7 +3,11 @@ function Withdraw(){
   const [status, setStatus] = React.useState('');
   const ctx = React.useContext(UserContext);
 
-  return (
+  return (<>
+  
+    <body>
+        <img src="deposit.jpg" className="background"/>
+    <div>
     <Card
       bgcolor="success"
       header={ctx[2].logIn ? `Withdraw ${ctx[0].user.email}` : 'Please Login'}
@@ -11,8 +15,11 @@ function Withdraw(){
       body={show ? 
         <WithdrawForm setShow={setShow} setStatus={setStatus}/> :
         <WithdrawMsg setShow={setShow} setStatus={setStatus}/>}
-    />
-  )
+        />
+    </div>
+    </body>
+
+  </>)
 }
 //================================SUCCESS MESSAGE================================
 function WithdrawMsg(props){
