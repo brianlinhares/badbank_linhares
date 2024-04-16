@@ -1,8 +1,7 @@
 const mongodb = require("mongodb");
 require('dotenv').config()
 //================================CONNECTS TO DB================================
-// const connectionURL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PWD}@cluster0.ebre3yq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-const connectionURL ='mongodb+srv://test:8Y1A8Eo9L2vjjz3f@cluster0.z6gilfq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const connectionURL ='mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PWD}@cluster0.z6gilfq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 const dbName = "myproject"
 //================================GET MONGODB================================
 const MongoClient = mongodb.MongoClient;
