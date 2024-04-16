@@ -10,24 +10,24 @@ app.use(express.static('public'));
 app.use(cors());
 //================================CREATE ACCOUNT================================
 app.get('/account/create/:name/:email/:password/:role', function (req, res) {
-dal.find(req.params.email).
-    then((users) => {
-    if(users.length > 0){
-        console.log('User name is taken. Please select another.');
-        res.send('User name is taken. Please select another.');    
-        }
-    else{
-        const decodePassword = decodeURIComponent(req.params.password);
-        bcrypt.hash(decodePassword, saltRounds).then(function(hash) {
-        dal.create(req.params.name,req.params.email,hash,req.params.role).
-        then((user) => {
-            console.log(user);
-            res.send(user);            
-        }); 
+    dal.find(req.params.email).
+        then((users) => {
+        if(users.length > 0){
+            console.log('User name is taken. Please select another.');
+            res.send('User name is taken. Please select another.');    
+            }
+        else{
+            const decodePassword = decodeURIComponent(req.params.password);
+            bcrypt.hash(decodePassword, saltRounds).then(function(hash) {
+            dal.create(req.params.name,req.params.email,hash,req.params.role).
+            then((user) => {
+                console.log(user);
+                res.send(user);            
+            }); 
+            });
+            }
         });
-        }
     });
-});
 //================================LOGIN================================ 
 app.get('/account/login/:email/:password', function (req, res) {
     dal.find(req.params.email).

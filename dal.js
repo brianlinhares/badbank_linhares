@@ -1,7 +1,8 @@
 const mongodb = require("mongodb");
 require('dotenv').config()
 //================================CONNECTS TO DB================================
-const connectionURL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PWD}@cluster0.ebre3yq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+// const connectionURL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PWD}@cluster0.ebre3yq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+const connectionURL ='mongodb+srv://test:8Y1A8Eo9L2vjjz3f@cluster0.z6gilfq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 const dbName = "myproject"
 //================================GET MONGODB================================
 const MongoClient = mongodb.MongoClient;
@@ -16,10 +17,10 @@ MongoClient.connect(connectionURL,{
     db = connectedClient.db(dbName);
 })
 //================================CREATE ACCOUNT================================
-function create(name, email, password,role){
+function create(name, email, password){
     return new Promise((resolve, reject) => {    
         const collection = db.collection('users');
-        const doc = {name, email, password, balance: 0, role, transactions: []};
+        const doc = {name, email, password, balance: 0, transactions: []};
         collection.insertOne(doc, {w:1}, function(err, result) {
             err ? reject(err) : resolve(doc);
         });    
